@@ -1,104 +1,296 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#141218" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#FEF7FF" media="(prefers-color-scheme: light)">
+<title>DevTrack</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;width:100%;overflow:hidden}
 :root{
---p:#6750A4;--op:#fff;--pc:#EADDFF;--opc:#21005D;
---sc:#625B71;--scc:#E8DEF8;--oscc:#1D192B;
---otcc:#FFD8E4;--tc2:#31111D;
---ecc:#F9DEDC;--oecc:#410E0B;
---bg:#FEF7FF;--fg:#1C1B1F;--osv:#49454F;
---sc0:#fff;--sc1:#F7F2FA;--sc2:#F3EDF7;--sc3:#ECE6F0;--sc4:#E6E0E9;
---olv:#CAC4D0;--is:#313033;--ios:#F4EFF4;
+  --p:#6750A4;--op:#fff;--pc:#EADDFF;--opc:#21005D;
+  --scc:#E8DEF8;--oscc:#1D192B;
+  --otcc:#FFD8E4;--tc2:#31111D;
+  --ecc:#F9DEDC;--oecc:#410E0B;
+  --bg:#FEF7FF;--fg:#1C1B1F;--osv:#49454F;
+  --sc0:#fff;--sc1:#F7F2FA;--sc2:#F3EDF7;--sc3:#ECE6F0;--sc4:#E6E0E9;
+  --olv:#CAC4D0;--is:#313033;--ios:#F4EFF4;
 }
 @media(prefers-color-scheme:dark){:root{
---p:#D0BCFF;--op:#381E72;--pc:#4F378B;--opc:#EADDFF;
---scc:#4A4458;--oscc:#E8DEF8;
---otcc:#633B48;--tc2:#FFD8E4;
---ecc:#601410;--oecc:#F9DEDC;
---bg:#141218;--fg:#E6E1E5;--osv:#CAC4D0;
---sc0:#0F0D13;--sc1:#1D1B20;--sc2:#211F26;--sc3:#2B2930;--sc4:#36343B;
---olv:#49454F;--is:#E6E1E5;--ios:#313033;
+  --p:#D0BCFF;--op:#381E72;--pc:#4F378B;--opc:#EADDFF;
+  --scc:#4A4458;--oscc:#E8DEF8;
+  --otcc:#633B48;--tc2:#FFD8E4;
+  --ecc:#601410;--oecc:#F9DEDC;
+  --bg:#141218;--fg:#E6E1E5;--osv:#CAC4D0;
+  --sc0:#0F0D13;--sc1:#1D1B20;--sc2:#211F26;--sc3:#2B2930;--sc4:#36343B;
+  --olv:#49454F;--is:#E6E1E5;--ios:#313033;
 }}
-body{font-family:'Google Sans',system-ui,sans-serif;background:var(--bg);color:var(--fg);max-width:420px;margin:0 auto;min-height:600px}
-.topbar{background:var(--sc2);padding:12px 16px 0;position:sticky;top:0;z-index:50}
-.topbar-row{display:flex;align-items:center;gap:10px;padding-bottom:12px}
-.app-ic{width:40px;height:40px;border-radius:12px;background:var(--pc);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
-.app-title{font-size:22px;font-weight:700;color:var(--fg);flex:1;letter-spacing:-.3px}
-.fab{width:48px;height:48px;border-radius:16px;background:var(--p);color:var(--op);border:none;cursor:pointer;font-size:24px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.fab:active{opacity:.8}
-.tabs{display:flex;border-bottom:1px solid var(--olv)}
-.tab{flex:1;padding:12px 0 10px;text-align:center;font-size:14px;font-weight:500;cursor:pointer;color:var(--osv);border-bottom:3px solid transparent;transition:color .15s,border-color .15s;user-select:none}
+
+body{
+  font-family:'Google Sans',system-ui,sans-serif;
+  background:var(--bg);
+  color:var(--fg);
+  display:flex;
+  flex-direction:column;
+  height:100dvh;
+  overflow:hidden;
+}
+
+/* TOPBAR */
+.topbar{
+  background:var(--sc2);
+  padding:env(safe-area-inset-top,0) 16px 0;
+  flex-shrink:0;
+  z-index:10;
+}
+.topbar-row{
+  display:flex;align-items:center;gap:10px;
+  padding:12px 0;
+}
+.app-ic{
+  width:42px;height:42px;border-radius:14px;
+  background:var(--pc);
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;flex-shrink:0;
+}
+.app-title{
+  font-size:24px;font-weight:700;
+  color:var(--fg);flex:1;letter-spacing:-.4px;
+}
+.fab{
+  width:52px;height:52px;border-radius:18px;
+  background:var(--p);color:var(--op);
+  border:none;cursor:pointer;
+  font-size:28px;line-height:1;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+  transition:opacity .1s;
+}
+.fab:active{opacity:.75}
+
+.tabs{display:flex;border-bottom:1.5px solid var(--olv)}
+.tab{
+  flex:1;padding:13px 0 11px;
+  text-align:center;font-size:14px;font-weight:500;
+  cursor:pointer;color:var(--osv);
+  border-bottom:3px solid transparent;
+  margin-bottom:-1.5px;
+  transition:color .15s,border-color .15s;
+  user-select:none;
+}
 .tab.on{color:var(--p);border-bottom-color:var(--p)}
-.tbadge{display:inline-flex;align-items:center;justify-content:center;background:var(--scc);color:var(--oscc);font-size:11px;font-weight:700;min-width:18px;height:18px;border-radius:20px;padding:0 5px;margin-left:5px}
-.content{padding:16px}
+.tbadge{
+  display:inline-flex;align-items:center;justify-content:center;
+  background:var(--scc);color:var(--oscc);
+  font-size:11px;font-weight:700;
+  min-width:18px;height:18px;border-radius:20px;
+  padding:0 5px;margin-left:5px;
+}
+
+/* SCROLL CONTENT */
+.content{
+  flex:1;overflow-y:auto;
+  padding:16px 16px calc(env(safe-area-inset-bottom,0px) + 16px);
+  -webkit-overflow-scrolling:touch;
+}
 .grid{display:flex;flex-direction:column;gap:12px}
-.card{background:var(--sc1);border-radius:28px;overflow:hidden;cursor:pointer}
-.card:active{opacity:.85}
+
+/* CARDS */
+.card{
+  background:var(--sc1);border-radius:28px;
+  overflow:hidden;cursor:pointer;
+  transition:opacity .1s;
+}
+.card:active{opacity:.8}
 .card-inner{display:flex;align-items:center;gap:14px;padding:16px}
-.card-img{width:72px;height:72px;flex-shrink:0;border-radius:16px;background:var(--sc3);overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:30px}
+.card-img{
+  width:76px;height:76px;flex-shrink:0;
+  border-radius:18px;background:var(--sc3);
+  overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:32px;
+}
 .card-img img{width:100%;height:100%;object-fit:cover}
 .card-info{flex:1;min-width:0}
-.chip{display:inline-flex;align-items:center;gap:3px;font-size:11px;font-weight:600;padding:3px 9px;border-radius:20px;margin-bottom:5px}
+.chip{
+  display:inline-flex;align-items:center;gap:3px;
+  font-size:11px;font-weight:600;
+  padding:3px 10px;border-radius:20px;margin-bottom:5px;
+}
 .chip-m{background:var(--pc);color:var(--opc)}
 .chip-w{background:var(--otcc);color:var(--tc2)}
-.card-name{font-size:16px;font-weight:600;color:var(--fg);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:2px}
+.card-name{
+  font-size:16px;font-weight:600;color:var(--fg);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:2px;
+}
 .card-sub{font-size:13px;color:var(--osv);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.del-btn{width:38px;height:38px;border-radius:50%;border:none;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--osv);flex-shrink:0}
+.del-btn{
+  width:42px;height:42px;border-radius:50%;border:none;
+  background:transparent;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;color:var(--osv);flex-shrink:0;
+  transition:background .15s;
+}
 .del-btn:active{background:var(--sc4)}
-.empty{text-align:center;padding:48px 20px;color:var(--osv)}
-.empty-ic{font-size:56px;margin-bottom:14px}
-.empty-t{font-size:20px;font-weight:700;color:var(--fg);margin-bottom:8px}
-.empty-s{font-size:14px;line-height:1.6}
-.overlay{display:none;position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.45);align-items:flex-end;justify-content:center}
+
+/* EMPTY */
+.empty{text-align:center;padding:60px 20px;color:var(--osv)}
+.empty-ic{font-size:64px;margin-bottom:16px}
+.empty-t{font-size:22px;font-weight:700;color:var(--fg);margin-bottom:8px}
+.empty-s{font-size:15px;line-height:1.6}
+
+/* OVERLAYS */
+.overlay{
+  display:none;position:fixed;inset:0;z-index:100;
+  background:rgba(0,0,0,.5);
+  align-items:flex-end;justify-content:center;
+}
 .overlay.show{display:flex}
-.sheet{width:100%;max-width:420px;background:var(--sc1);border-radius:28px 28px 0 0;transform:translateY(100%);transition:transform .3s cubic-bezier(.32,.72,0,1);max-height:88vh;overflow-y:auto}
+.sheet{
+  width:100%;background:var(--sc1);
+  border-radius:28px 28px 0 0;
+  transform:translateY(100%);
+  transition:transform .32s cubic-bezier(.32,.72,0,1);
+  max-height:92dvh;overflow-y:auto;
+  padding-bottom:env(safe-area-inset-bottom,16px);
+}
 .sheet.show{transform:none}
-.handle{width:32px;height:4px;border-radius:2px;background:var(--olv);margin:12px auto 0}
-.sh-head{display:flex;align-items:center;padding:14px 20px 6px;gap:8px}
-.sh-title{font-size:20px;font-weight:700;flex:1}
-.x-btn{width:38px;height:38px;border-radius:50%;border:none;background:var(--sc2);cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;color:var(--osv)}
-.form-body{padding:0 20px 28px}
-.flabel{font-size:11px;font-weight:600;color:var(--osv);letter-spacing:.4px;text-transform:uppercase;margin-bottom:7px;display:block}
-.fsec{margin-bottom:18px}
+.handle{
+  width:36px;height:4px;border-radius:2px;
+  background:var(--olv);margin:12px auto 0;
+}
+.sh-head{display:flex;align-items:center;padding:16px 20px 8px;gap:10px}
+.sh-title{font-size:22px;font-weight:700;flex:1}
+.x-btn{
+  width:40px;height:40px;border-radius:50%;
+  border:none;background:var(--sc2);cursor:pointer;
+  font-size:18px;display:flex;align-items:center;justify-content:center;
+  color:var(--osv);flex-shrink:0;
+}
+
+/* FORM */
+.form-body{padding:4px 20px 8px}
+.flabel{font-size:11px;font-weight:600;color:var(--osv);letter-spacing:.5px;text-transform:uppercase;margin-bottom:8px;display:block}
+.fsec{margin-bottom:20px}
 .seg{display:flex;background:var(--sc3);border-radius:50px;padding:3px}
-.sbtn{flex:1;padding:10px 8px;border:none;cursor:pointer;border-radius:50px;background:transparent;font-size:13px;font-weight:500;color:var(--osv);font-family:inherit;transition:background .15s,color .15s;display:flex;align-items:center;justify-content:center;gap:5px}
+.sbtn{
+  flex:1;padding:11px 8px;border:none;cursor:pointer;border-radius:50px;
+  background:transparent;font-size:14px;font-weight:500;color:var(--osv);
+  font-family:inherit;transition:background .15s,color .15s;
+  display:flex;align-items:center;justify-content:center;gap:5px;
+}
 .sbtn.on{background:var(--sc0);color:var(--fg)}
-.tfield{width:100%;background:var(--sc2);border:1.5px solid var(--olv);border-radius:12px;padding:13px 14px;font-size:15px;color:var(--fg);font-family:inherit;outline:none;transition:border-color .15s;-webkit-appearance:none;appearance:none}
+.tfield{
+  width:100%;background:var(--sc2);
+  border:1.5px solid var(--olv);border-radius:14px;
+  padding:14px 16px;font-size:16px;color:var(--fg);
+  font-family:inherit;outline:none;
+  transition:border-color .15s;
+  -webkit-appearance:none;appearance:none;
+}
 .tfield:focus{border-color:var(--p)}
-.tfield::placeholder{color:var(--osv);opacity:.65}
-.img-pick{width:100%;height:110px;border:2px dashed var(--olv);border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;cursor:pointer;background:var(--sc2);position:relative;overflow:hidden}
+.tfield::placeholder{color:var(--osv);opacity:.6}
+.img-pick{
+  width:100%;height:120px;
+  border:2px dashed var(--olv);border-radius:18px;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:6px;
+  cursor:pointer;background:var(--sc2);
+  position:relative;overflow:hidden;
+  transition:border-color .15s;
+}
+.img-pick:active{border-color:var(--p)}
 .img-pick img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.ip-icon{font-size:28px;position:relative}
+.ip-icon{font-size:30px;position:relative}
 .ip-lbl{font-size:13px;font-weight:500;color:var(--osv);position:relative}
-.sub-btn{width:100%;padding:15px;background:var(--p);color:var(--op);border:none;border-radius:50px;font-size:16px;font-weight:600;font-family:inherit;cursor:pointer}
-.sub-btn:active{opacity:.85}
-.detail-overlay{display:none;position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.45);align-items:flex-end;justify-content:center}
+.sub-btn{
+  width:100%;padding:17px;
+  background:var(--p);color:var(--op);
+  border:none;border-radius:50px;
+  font-size:17px;font-weight:600;
+  font-family:inherit;cursor:pointer;
+  margin-top:4px;
+  transition:opacity .1s;
+}
+.sub-btn:active{opacity:.8}
+
+/* DETAIL */
+.detail-overlay{
+  display:none;position:fixed;inset:0;z-index:100;
+  background:rgba(0,0,0,.5);
+  align-items:flex-end;justify-content:center;
+}
 .detail-overlay.show{display:flex}
-.dsheet{width:100%;max-width:420px;background:var(--bg);border-radius:28px 28px 0 0;transform:translateY(100%);transition:transform .3s cubic-bezier(.32,.72,0,1);max-height:88vh;overflow-y:auto}
+.dsheet{
+  width:100%;background:var(--bg);
+  border-radius:28px 28px 0 0;
+  transform:translateY(100%);
+  transition:transform .32s cubic-bezier(.32,.72,0,1);
+  max-height:92dvh;overflow-y:auto;
+  padding-bottom:env(safe-area-inset-bottom,24px);
+}
 .dsheet.show{transform:none}
-.dhero{width:100%;height:200px;background:var(--sc3);display:flex;align-items:center;justify-content:center;font-size:72px;position:relative;overflow:hidden}
+.dhero{
+  width:100%;height:220px;background:var(--sc3);
+  display:flex;align-items:center;justify-content:center;
+  font-size:80px;position:relative;overflow:hidden;flex-shrink:0;
+}
 .dhero img{width:100%;height:100%;object-fit:cover}
-.dhero-back{position:absolute;top:14px;left:14px;width:42px;height:42px;border-radius:50%;background:var(--sc2);border:none;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;color:var(--fg)}
-.dbody{padding:18px 22px 28px}
-.dtitle{font-size:26px;font-weight:700;margin-bottom:4px;letter-spacing:-.3px}
-.dmeta{font-size:14px;color:var(--osv);margin-bottom:12px}
-.dnotes{font-size:14px;line-height:1.6;color:var(--osv);margin-bottom:20px}
+.dhero-back{
+  position:absolute;top:16px;left:16px;
+  width:44px;height:44px;border-radius:50%;
+  background:rgba(0,0,0,.35);border:none;cursor:pointer;
+  font-size:20px;display:flex;align-items:center;justify-content:center;color:#fff;
+}
+.dbody{padding:20px 22px 8px}
+.dtitle{font-size:28px;font-weight:700;margin-bottom:4px;letter-spacing:-.4px}
+.dmeta{font-size:14px;color:var(--osv);margin-bottom:14px}
+.dnotes{font-size:15px;line-height:1.65;color:var(--osv);margin-bottom:24px}
 .dbtns{display:flex;gap:10px}
-.dbtn{flex:1;padding:13px;border-radius:50px;font-size:14px;font-weight:600;font-family:inherit;cursor:pointer;border:none}
+.dbtn{flex:1;padding:14px;border-radius:50px;font-size:15px;font-weight:600;font-family:inherit;cursor:pointer;border:none;transition:opacity .1s}
 .dbtn:active{opacity:.8}
 .dbtn-p{background:var(--p);color:var(--op)}
 .dbtn-s{background:var(--scc);color:var(--oscc)}
-.confirm-ov{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.5);align-items:center;justify-content:center;padding:24px}
+
+/* CONFIRM */
+.confirm-ov{
+  display:none;position:fixed;inset:0;z-index:200;
+  background:rgba(0,0,0,.55);
+  align-items:center;justify-content:center;padding:24px;
+}
 .confirm-ov.show{display:flex}
-.dialog{width:100%;max-width:300px;background:var(--sc3);border-radius:28px;padding:22px}
-.dlg-t{font-size:18px;font-weight:700;margin-bottom:8px}
-.dlg-b{font-size:14px;color:var(--osv);line-height:1.5;margin-bottom:18px}
+.dialog{
+  width:100%;max-width:320px;
+  background:var(--sc3);border-radius:28px;padding:24px;
+}
+.dlg-t{font-size:20px;font-weight:700;margin-bottom:8px}
+.dlg-b{font-size:15px;color:var(--osv);line-height:1.5;margin-bottom:20px}
 .dlg-acts{display:flex;gap:8px;justify-content:flex-end}
-.dlg-btn{padding:10px 18px;border-radius:50px;border:none;cursor:pointer;font-size:13px;font-weight:600;font-family:inherit}
+.dlg-btn{padding:11px 20px;border-radius:50px;border:none;cursor:pointer;font-size:14px;font-weight:600;font-family:inherit}
 .dlg-cancel{background:transparent;color:var(--p)}
 .dlg-del{background:var(--ecc);color:var(--oecc)}
-.snack{position:fixed;bottom:72px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--is);color:var(--ios);padding:12px 20px;border-radius:50px;font-size:13px;font-weight:500;opacity:0;transition:opacity .25s,transform .25s;z-index:300;pointer-events:none;white-space:nowrap;max-width:88%}
+
+/* SNACK */
+.snack{
+  position:fixed;
+  bottom:calc(env(safe-area-inset-bottom,0px) + 20px);
+  left:50%;transform:translateX(-50%) translateY(16px);
+  background:var(--is);color:var(--ios);
+  padding:13px 22px;border-radius:50px;
+  font-size:14px;font-weight:500;
+  opacity:0;transition:opacity .25s,transform .25s;
+  z-index:300;pointer-events:none;
+  white-space:nowrap;max-width:90%;
+}
 .snack.show{opacity:1;transform:translateX(-50%) translateY(0)}
 </style>
+</head>
+<body>
 
 <div class="topbar">
   <div class="topbar-row">
@@ -114,6 +306,7 @@ body{font-family:'Google Sans',system-ui,sans-serif;background:var(--bg);color:v
 
 <div class="content"><div class="grid" id="grid"></div></div>
 
+<!-- ADD SHEET -->
 <div class="overlay" id="add-ov">
   <div class="sheet" id="add-sheet">
     <div class="handle"></div>
@@ -147,7 +340,7 @@ body{font-family:'Google Sans',system-ui,sans-serif;background:var(--bg);color:v
         <input class="tfield" type="text" id="f-brand" placeholder="напр. Apple" maxlength="40">
       </div>
       <div class="fsec">
-        <span class="flabel">Тип</span>
+        <span class="flabel">Тип пристрою</span>
         <select class="tfield" id="f-type">
           <option value="📱">📱 Смартфон</option>
           <option value="💻">💻 Ноутбук</option>
@@ -171,6 +364,7 @@ body{font-family:'Google Sans',system-ui,sans-serif;background:var(--bg);color:v
   </div>
 </div>
 
+<!-- DETAIL SHEET -->
 <div class="detail-overlay" id="det-ov">
   <div class="dsheet" id="det-sheet">
     <div class="dhero" id="det-hero">
@@ -191,10 +385,11 @@ body{font-family:'Google Sans',system-ui,sans-serif;background:var(--bg);color:v
   </div>
 </div>
 
+<!-- CONFIRM DIALOG -->
 <div class="confirm-ov" id="conf-ov">
   <div class="dialog">
     <div class="dlg-t">Видалити девайс?</div>
-    <div class="dlg-b" id="dlg-b">Цю дію не можна скасувати.</div>
+    <div class="dlg-b" id="dlg-b">Це незворотно.</div>
     <div class="dlg-acts">
       <button class="dlg-btn dlg-cancel" id="dlg-cancel">Скасувати</button>
       <button class="dlg-btn dlg-del" id="dlg-confirm">Видалити</button>
@@ -206,55 +401,38 @@ body{font-family:'Google Sans',system-ui,sans-serif;background:var(--bg);color:v
 
 <script>
 const KEY = 'devtrack_v3';
+function load(){try{return JSON.parse(localStorage.getItem(KEY))||[];}catch(e){return[];}}
+function save(d){try{localStorage.setItem(KEY,JSON.stringify(d));}catch(e){}}
 
-function load() {
-  try { return JSON.parse(localStorage.getItem(KEY)) || []; }
-  catch(e) { return []; }
+let devices=load();
+let currentTab='mine',selCat='mine',selImg=null,detId=null,delId=null;
+
+function genId(){return Date.now().toString(36)+Math.random().toString(36).slice(2);}
+function esc(s){return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+function showSnack(msg){
+  const s=document.getElementById('snack');
+  s.textContent=msg;s.classList.add('show');
+  clearTimeout(s._t);s._t=setTimeout(()=>s.classList.remove('show'),2600);
 }
-function save(devices) {
-  try { localStorage.setItem(KEY, JSON.stringify(devices)); } catch(e) {}
+function updateBadges(){
+  document.getElementById('b-mine').textContent=devices.filter(d=>d.cat==='mine').length;
+  document.getElementById('b-wishlist').textContent=devices.filter(d=>d.cat==='wishlist').length;
 }
-
-let devices = load();
-let currentTab = 'mine';
-let selCat = 'mine';
-let selImg = null;
-let detId = null;
-let delId = null;
-
-function genId() { return Date.now().toString(36) + Math.random().toString(36).slice(2); }
-
-function esc(s) {
-  return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-}
-
-function showSnack(msg) {
-  const s = document.getElementById('snack');
-  s.textContent = msg;
-  s.classList.add('show');
-  clearTimeout(s._t);
-  s._t = setTimeout(() => s.classList.remove('show'), 2600);
-}
-
-function updateBadges() {
-  document.getElementById('b-mine').textContent = devices.filter(d => d.cat === 'mine').length;
-  document.getElementById('b-wishlist').textContent = devices.filter(d => d.cat === 'wishlist').length;
-}
-
-function render() {
-  const grid = document.getElementById('grid');
-  const list = devices.filter(d => d.cat === currentTab);
-  if (!list.length) {
-    const t = currentTab === 'mine';
-    grid.innerHTML = `<div class="empty"><div class="empty-ic">${t?'📦':'❤️'}</div><div class="empty-t">${t?'Немає пристроїв':'Список порожній'}</div><div class="empty-s">${t?'Натисніть + щоб додати перший пристрій':'Додайте девайси які хочете купити'}</div></div>`;
+function render(){
+  const grid=document.getElementById('grid');
+  const list=devices.filter(d=>d.cat===currentTab);
+  if(!list.length){
+    const t=currentTab==='mine';
+    grid.innerHTML=`<div class="empty"><div class="empty-ic">${t?'📦':'❤️'}</div><div class="empty-t">${t?'Немає пристроїв':'Список порожній'}</div><div class="empty-s">${t?'Натисніть + щоб додати перший пристрій':'Додайте девайси які хочете купити'}</div></div>`;
     return;
   }
-  grid.innerHTML = '';
-  list.forEach(d => {
-    const card = document.createElement('div');
-    card.className = 'card';
-    card.innerHTML = `<div class="card-inner">
-      <div class="card-img">${d.img ? `<img src="${d.img}">` : (d.ic||'📦')}</div>
+  grid.innerHTML='';
+  list.forEach(d=>{
+    const card=document.createElement('div');
+    card.className='card';
+    card.innerHTML=`<div class="card-inner">
+      <div class="card-img">${d.img?`<img src="${d.img}">`:(d.ic||'📦')}</div>
       <div class="card-info">
         <div class="chip ${d.cat==='mine'?'chip-m':'chip-w'}">${d.cat==='mine'?'📦 Мій':'❤️ Хочу'}</div>
         <div class="card-name">${esc(d.name)}</div>
@@ -262,131 +440,105 @@ function render() {
       </div>
       <button class="del-btn" title="Видалити">🗑</button>
     </div>`;
-    card.querySelector('.del-btn').addEventListener('click', e => {
-      e.stopPropagation();
-      openConfirm(d.id);
-    });
-    card.addEventListener('click', () => openDetail(d.id));
+    card.querySelector('.del-btn').addEventListener('click',e=>{e.stopPropagation();openConfirm(d.id);});
+    card.addEventListener('click',()=>openDetail(d.id));
     grid.appendChild(card);
   });
-  updateBadges();
 }
-
-function switchTab(tab) {
-  currentTab = tab;
-  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('on', t.dataset.tab === tab));
+function switchTab(tab){
+  currentTab=tab;
+  document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on',t.dataset.tab===tab));
   render();
 }
-document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => switchTab(t.dataset.tab)));
+document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>switchTab(t.dataset.tab)));
 
-document.getElementById('fab-add').addEventListener('click', () => {
-  resetForm();
-  openSheet('add-ov','add-sheet');
-});
-document.getElementById('add-close').addEventListener('click', () => closeSheet('add-ov','add-sheet'));
-document.getElementById('add-ov').addEventListener('click', e => { if(e.target===e.currentTarget) closeSheet('add-ov','add-sheet'); });
+document.getElementById('fab-add').addEventListener('click',()=>{resetForm();openSheet('add-ov','add-sheet');});
+document.getElementById('add-close').addEventListener('click',()=>closeSheet('add-ov','add-sheet'));
+document.getElementById('add-ov').addEventListener('click',e=>{if(e.target===e.currentTarget)closeSheet('add-ov','add-sheet');});
 
-document.querySelectorAll('.sbtn').forEach(btn => btn.addEventListener('click', () => {
-  selCat = btn.dataset.cat;
-  document.querySelectorAll('.sbtn').forEach(b => b.classList.toggle('on', b===btn));
+document.querySelectorAll('.sbtn').forEach(btn=>btn.addEventListener('click',()=>{
+  selCat=btn.dataset.cat;
+  document.querySelectorAll('.sbtn').forEach(b=>b.classList.toggle('on',b===btn));
 }));
-
-document.getElementById('img-pick').addEventListener('click', () => document.getElementById('file-in').click());
-document.getElementById('file-in').addEventListener('change', e => {
-  const f = e.target.files[0]; if(!f) return;
-  const reader = new FileReader();
-  reader.onload = ev => {
-    selImg = ev.target.result;
-    const img = document.getElementById('preview');
-    img.src = selImg; img.style.display = 'block';
-    document.getElementById('pick-ic').style.display = 'none';
-    document.getElementById('pick-lbl').textContent = 'Змінити фото';
+document.getElementById('img-pick').addEventListener('click',()=>document.getElementById('file-in').click());
+document.getElementById('file-in').addEventListener('change',e=>{
+  const f=e.target.files[0];if(!f)return;
+  const reader=new FileReader();
+  reader.onload=ev=>{
+    selImg=ev.target.result;
+    const img=document.getElementById('preview');
+    img.src=selImg;img.style.display='block';
+    document.getElementById('pick-ic').style.display='none';
+    document.getElementById('pick-lbl').textContent='Змінити фото';
   };
   reader.readAsDataURL(f);
 });
-
-document.getElementById('sub-btn').addEventListener('click', () => {
-  const name = document.getElementById('f-name').value.trim();
-  if(!name) { showSnack('⚠️ Введіть назву'); return; }
-  const d = {
-    id: genId(), name,
-    brand: document.getElementById('f-brand').value.trim(),
-    ic: document.getElementById('f-type').value,
-    notes: document.getElementById('f-notes').value.trim(),
-    cat: selCat,
-    img: selImg,
-    added: new Date().toLocaleDateString('uk-UA')
-  };
-  devices.unshift(d);
-  save(devices);
+document.getElementById('sub-btn').addEventListener('click',()=>{
+  const name=document.getElementById('f-name').value.trim();
+  if(!name){showSnack('⚠️ Введіть назву');return;}
+  const d={id:genId(),name,brand:document.getElementById('f-brand').value.trim(),ic:document.getElementById('f-type').value,notes:document.getElementById('f-notes').value.trim(),cat:selCat,img:selImg,added:new Date().toLocaleDateString('uk-UA')};
+  devices.unshift(d);save(devices);
   closeSheet('add-ov','add-sheet');
-  if(currentTab !== selCat) switchTab(selCat); else render();
-  updateBadges();
-  showSnack('✅ Девайс додано!');
+  if(currentTab!==selCat)switchTab(selCat);else render();
+  updateBadges();showSnack('✅ Девайс додано!');
 });
-
-function resetForm() {
-  document.getElementById('f-name').value = '';
-  document.getElementById('f-brand').value = '';
-  document.getElementById('f-notes').value = '';
-  document.getElementById('f-type').value = '📱';
-  selImg = null;
-  selCat = 'mine';
-  const img = document.getElementById('preview');
-  img.src = ''; img.style.display = 'none';
-  document.getElementById('pick-ic').style.display = '';
-  document.getElementById('pick-lbl').textContent = 'Натисніть щоб вибрати';
-  document.getElementById('file-in').value = '';
-  document.querySelectorAll('.sbtn').forEach(b => b.classList.toggle('on', b.dataset.cat==='mine'));
+function resetForm(){
+  document.getElementById('f-name').value='';
+  document.getElementById('f-brand').value='';
+  document.getElementById('f-notes').value='';
+  document.getElementById('f-type').value='📱';
+  selImg=null;selCat='mine';
+  const img=document.getElementById('preview');
+  img.src='';img.style.display='none';
+  document.getElementById('pick-ic').style.display='';
+  document.getElementById('pick-lbl').textContent='Натисніть щоб вибрати';
+  document.getElementById('file-in').value='';
+  document.querySelectorAll('.sbtn').forEach(b=>b.classList.toggle('on',b.dataset.cat==='mine'));
 }
 
-function openDetail(id) {
-  const d = devices.find(x => x.id===id); if(!d) return;
-  detId = id;
-  const hi = document.getElementById('det-hero-ic');
-  const himg = document.getElementById('det-hero-img');
-  if(d.img) { himg.src = d.img; himg.style.display='block'; hi.textContent=''; }
-  else { himg.style.display='none'; hi.textContent = d.ic||'📦'; }
-  document.getElementById('det-name').textContent = d.name;
-  document.getElementById('det-meta').textContent = (d.brand?d.brand+' · ':'')+(d.ic||'')+(d.added?' · '+d.added:'');
-  document.getElementById('det-notes').textContent = d.notes||'Нотаток немає.';
-  document.getElementById('det-chip-wrap').innerHTML = `<div class="chip ${d.cat==='mine'?'chip-m':'chip-w'}" style="margin-bottom:10px">${d.cat==='mine'?'📦 Мій':'❤️ Хочу купити'}</div>`;
+function openDetail(id){
+  const d=devices.find(x=>x.id===id);if(!d)return;
+  detId=id;
+  const hi=document.getElementById('det-hero-ic');
+  const himg=document.getElementById('det-hero-img');
+  if(d.img){himg.src=d.img;himg.style.display='block';hi.textContent='';}
+  else{himg.style.display='none';hi.textContent=d.ic||'📦';}
+  document.getElementById('det-name').textContent=d.name;
+  document.getElementById('det-meta').textContent=(d.brand?d.brand+' · ':'')+(d.ic||'')+(d.added?' · '+d.added:'');
+  document.getElementById('det-notes').textContent=d.notes||'Нотаток немає.';
+  document.getElementById('det-chip-wrap').innerHTML=`<div class="chip ${d.cat==='mine'?'chip-m':'chip-w'}" style="margin-bottom:12px">${d.cat==='mine'?'📦 Мій пристрій':'❤️ Хочу купити'}</div>`;
   openSheet('det-ov','det-sheet');
 }
-document.getElementById('det-back').addEventListener('click', () => closeSheet('det-ov','det-sheet'));
-document.getElementById('det-close2').addEventListener('click', () => closeSheet('det-ov','det-sheet'));
-document.getElementById('det-ov').addEventListener('click', e => { if(e.target===e.currentTarget) closeSheet('det-ov','det-sheet'); });
-document.getElementById('det-del').addEventListener('click', () => {
-  closeSheet('det-ov','det-sheet');
-  setTimeout(() => openConfirm(detId), 200);
-});
+document.getElementById('det-back').addEventListener('click',()=>closeSheet('det-ov','det-sheet'));
+document.getElementById('det-close2').addEventListener('click',()=>closeSheet('det-ov','det-sheet'));
+document.getElementById('det-ov').addEventListener('click',e=>{if(e.target===e.currentTarget)closeSheet('det-ov','det-sheet');});
+document.getElementById('det-del').addEventListener('click',()=>{closeSheet('det-ov','det-sheet');setTimeout(()=>openConfirm(detId),200);});
 
-function openConfirm(id) {
-  delId = id;
-  const d = devices.find(x => x.id===id);
-  document.getElementById('dlg-b').textContent = `Видалити "${d?d.name:''}"? Це незворотно.`;
+function openConfirm(id){
+  delId=id;
+  const d=devices.find(x=>x.id===id);
+  document.getElementById('dlg-b').textContent=`Видалити "${d?d.name:''}"? Це незворотно.`;
   document.getElementById('conf-ov').classList.add('show');
 }
-document.getElementById('dlg-cancel').addEventListener('click', () => document.getElementById('conf-ov').classList.remove('show'));
-document.getElementById('conf-ov').addEventListener('click', e => { if(e.target===e.currentTarget) document.getElementById('conf-ov').classList.remove('show'); });
-document.getElementById('dlg-confirm').addEventListener('click', () => {
-  devices = devices.filter(d => d.id !== delId);
+document.getElementById('dlg-cancel').addEventListener('click',()=>document.getElementById('conf-ov').classList.remove('show'));
+document.getElementById('conf-ov').addEventListener('click',e=>{if(e.target===e.currentTarget)document.getElementById('conf-ov').classList.remove('show');});
+document.getElementById('dlg-confirm').addEventListener('click',()=>{
+  devices=devices.filter(d=>d.id!==delId);
   save(devices);
   document.getElementById('conf-ov').classList.remove('show');
-  render();
-  updateBadges();
-  showSnack('🗑 Девайс видалено');
+  render();updateBadges();showSnack('🗑 Девайс видалено');
 });
 
-function openSheet(ovId, sheetId) {
+function openSheet(ovId,sheetId){
   document.getElementById(ovId).classList.add('show');
-  requestAnimationFrame(() => requestAnimationFrame(() => document.getElementById(sheetId).classList.add('show')));
+  requestAnimationFrame(()=>requestAnimationFrame(()=>document.getElementById(sheetId).classList.add('show')));
 }
-function closeSheet(ovId, sheetId) {
+function closeSheet(ovId,sheetId){
   document.getElementById(sheetId).classList.remove('show');
-  setTimeout(() => document.getElementById(ovId).classList.remove('show'), 300);
+  setTimeout(()=>document.getElementById(ovId).classList.remove('show'),300);
 }
 
-render();
-updateBadges();
+render();updateBadges();
 </script>
+</body>
+</html>
